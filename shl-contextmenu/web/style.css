@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================================================
+   Design Tokens
+   ============================================================================ */
+
+:root {
+    --bg-color: rgba(18, 15, 25, 0.75);
+    --bg-hover: rgba(139, 92, 246, 0.15);
+    --border-color: rgba(139, 92, 246, 0.15);
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b0;
+    --accent-color: #8b5cf6;
+    --shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.5);
+    --radius: 0.8rem;
+    --transition: 0.15s ease;
+    font-size: 0.926vh;
+    /* Base 10px @ 1080p */
+}
+
+/* ============================================================================
+   Base
+   ============================================================================ */
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    user-select: none;
+    background: transparent;
+}
+
+/* ============================================================================
+   Context Menu
+   ============================================================================ */
+
+.context-menu {
+    position: absolute;
+    min-width: 23.1rem;
+    max-width: 31.5rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    padding: 0.5rem;
+    z-index: 100;
+}
+
+.context-menu.visible {
+    display: flex;
+}
+
+/* Scrollable Variant */
+.context-menu.scrollable {
+    overflow-y: auto;
+}
+
+.context-menu.scrollable::-webkit-scrollbar {
+    width: 0.6rem;
+}
+
+.context-menu.scrollable::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.context-menu.scrollable::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 0.3rem;
+}
+
+.context-menu.scrollable::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* ============================================================================
+   Pagination Controls
+   ============================================================================ */
+
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-color);
+    margin-top: 4px;
+}
+
+.pagination-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.22rem 0.85rem;
+    font-size: 1.15rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagination-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--text-secondary);
+}
+
+.pagination-info {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    align-self: center;
+}
+
+/* ============================================================================
+   Menu Items
+   ============================================================================ */
+
+.menu-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.25rem;
+    border-radius: 0.4rem;
+    color: var(--text-primary);
+    font-size: 1.35rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.menu-item:hover,
+.menu-item.hovered {
+    background: var(--bg-hover);
+}
+
+.menu-item .label {
+    flex: 1;
+    white-space: normal;
+    word-wrap: break-word;
+    margin-right: 1.25rem;
+    line-height: 1.2;
+}
+
+.menu-item .right-text {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-left: auto;
+}
+
+.menu-separator {
+    height: 1px;
+    background: var(--border-color);
+    margin: 0.4rem 0.8rem;
+}
+
+/* ============================================================================
+   Indicators & Icons
+   ============================================================================ */
+
+.arrow {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-right: 2px solid var(--text-secondary);
+    border-bottom: 2px solid var(--text-secondary);
+    transform: rotate(-45deg);
+    margin-left: 0.85rem;
+}
+
+.checkbox-indicator {
+    width: 1.7rem;
+    height: 1.7rem;
+    border: 2px solid var(--text-secondary);
+    border-radius: 0.4rem;
+    margin-right: 1.05rem;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.checkbox-indicator.checked {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    animation: checkPop 0.25s ease;
+}
+
+.checkbox-indicator.checked::after {
+    content: '';
+    width: 0.4rem;
+    height: 0.8rem;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(45deg);
+    margin-bottom: 0.2rem;
+    animation: checkDraw 0.2s ease 0.05s both;
+}
+
+@keyframes checkPop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes checkDraw {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(45deg) scale(1);
+    }
+}
+
+/* ============================================================================
+   GTA Color Classes
+   ============================================================================ */
+
+.text-red {
+    color: #eb4d4b;
+}
+
+.text-blue {
+    color: #37a5e0;
+}
+
+.text-green {
+    color: #6ab04c;
+}
+
+.text-yellow {
+    color: #f9ca24;
+}
+
+.text-orange {
+    color: #f0932b;
+}
+
+.text-grey {
+    color: #95afc0;
+}
+
+.text-purple {
+    color: #be2edd;
+}
+
+.text-darkgrey {
+    color: #4d4d4d;
+}
+
+.text-magenta {
+    color: #ff33ff;
+}
+
+.text-black {
+    color: #000000;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.italic {
+    font-style: italic;
+}
+
+/* ============================================================================
+   Vehicle Spawn Dialog
+   ============================================================================ */
+
+.dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.dialog-box {
+    background: var(--bg-color);
+    padding: 2.1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    width: 31.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.dialog-box h3 {
+    margin: 0;
+    font-size: 1.47rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.dialog-box input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+    padding: 0.8rem;
+    color: white;
+    outline: none;
+}
+
+.dialog-box input:focus {
+    border-color: var(--accent-color);
+}
